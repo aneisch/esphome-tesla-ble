@@ -1239,6 +1239,9 @@ namespace esphome
       case SET_CHARGING_LIMIT:
         action_str = "setChargingLimit";
         break;
+      case SET_SENTRY_SWITCH:
+        action_str = "setSentrySwitch";
+        break;
       default:
         action_str = "setChargingParameters";
         break;
@@ -1259,6 +1262,10 @@ namespace esphome
           break;
         case SET_HVAC_STEERING_HEATER_SWITCH:
           return_code = tesla_ble_client_->buildHVACSteeringHeaterMessage(
+              static_cast<bool>(param), message_buffer, &message_length);
+          break;
+        case SET_SENTRY_SWITCH:
+          return_code = tesla_ble_client_->buildSentrySwitchMessage(
               static_cast<bool>(param), message_buffer, &message_length);
           break;
         case SET_CHARGING_SWITCH:
